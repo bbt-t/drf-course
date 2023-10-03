@@ -11,7 +11,11 @@ django-phonenumber-field = {extras = ["phonenumbers"], version = "^7.1.0"}
 djangorestframework = "^3.14.0"
 pillow = "^10.0.1"
 django = "^4.2.5"
+django-filter = "^23.3"
 
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
 
 [build-system]
 requires = ["poetry-core"]

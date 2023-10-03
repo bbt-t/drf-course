@@ -1,21 +1,30 @@
 from rest_framework import serializers
 
-from api.models import Student, Course, Lesson
+from api.models import Student, Course, Lesson, Payment
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ['email', 'city', 'phone']
-
-
-class CourseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['name', 'description']
+        fields = ["email", "city", "phone"]
 
 
 class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
-        fields = ['name', 'description']
+        fields = "__all__"
+
+
+class CourseSerializer(serializers.ModelSerializer):
+    lesson_count = serializers.SerializerMethodField()
+    lessons = LessonSerializer(many=True)
+
+    class Meta:
+        model = Course
+        fields = "__all__"
+
+
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = "__all__"
