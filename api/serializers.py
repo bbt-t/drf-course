@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from api.models import Student, Course, Lesson, Payment
+from api.models import Course, Lesson, Payment
+from auth_api.models import Student
 
 
 class UserSerializer(serializers.ModelSerializer):
