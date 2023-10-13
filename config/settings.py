@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from django.core.management import utils
@@ -104,7 +105,7 @@ AUTH_USER_MODEL = "auth_api.Student"
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
@@ -115,4 +116,15 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.UserRateThrottle",
     ],
     "DEFAULT_THROTTLE_RATES": {"anon": "200/day", "user": "60/minute"},
+    'DEFAULT_SCHEMA_CLASS':
+        'rest_framework.schemas.coreapi.AutoSchema',
 }
+
+
+# Payments stripe.com
+SECRET_KEY_STRIPE = os.getenv('SECRET_KEY_STRIPE')
+URL_PRODUCT = os.getenv('URL_PRODUCT')
+URL_PRICE = os.getenv('URL_PRICE')
+URL_PAYMENT_LINK = os.getenv('URL_PAYMENT_LINK')
+HEADERS = {"Authorization": f"Bearer {SECRET_KEY_STRIPE}"}
+

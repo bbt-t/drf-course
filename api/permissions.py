@@ -8,8 +8,3 @@ class IsOwnerOrReadOnly(BasePermission):
             return request.user.groups.filter(name='модератор').exists() or is_owner
 
         return is_owner
-
-
-# class IsModerator(BasePermission):
-#     def has_permission(self, request, view):
-#         return request.user.groups.filter(name='модератор').exists()
